@@ -1,0 +1,98 @@
+
+#include <iostream>
+using namespace std;
+
+class Matrix
+{
+    int a[2][2];
+
+public:
+    void accept()
+    {
+        cout << "Enter 4 elements of matrix:" << endl;
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                cin >> a[i][j];
+            }
+        }
+    }
+
+    void display()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                cout << a[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+
+    Matrix operator+(Matrix m)
+    {
+        Matrix temp;
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                temp.a[i][j] = a[i][j] + m.a[i][j];
+            }
+        }
+        return temp;
+    }
+
+    Matrix operator-(Matrix m)
+    {
+        Matrix temp;
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                temp.a[i][j] = a[i][j] - m.a[i][j];
+            }
+        }
+        return temp;
+    }
+
+    bool operator==(Matrix m)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                if (a[i][j] != m.a[i][j])
+                    return false;
+            }
+        }
+        return true;
+    }
+};
+
+int main()
+{
+    Matrix m1, m2, m3;
+
+    cout << "Enter first matrix:" << endl;
+    m1.accept();
+
+    cout << "Enter second matrix:" << endl;
+    m2.accept();
+
+    m3 = m1 + m2;
+    cout << "\nAddition of matrices:" << endl;
+    m3.display();
+
+    m3 = m1 - m2;
+    cout << "\nSubtraction of matrices:" << endl;
+    m3.display();
+
+    if (m1 == m2)
+        cout << "\nMatrices are equal." << endl;
+    else
+        cout << "\nMatrices are not equal." << endl;
+
+    return 0;
+}
